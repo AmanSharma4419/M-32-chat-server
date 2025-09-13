@@ -13,9 +13,12 @@ class Settings(BaseSettings):
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
 
-    # MongoDB
-    MONGO_URI: str = "mongodb://admin:admin@mongo:27017"
-    MONGO_DB: str = "chatbot"
+    # MongoDB (must come from env)
+    MONGO_URI: str
+    MONGO_DB: str
+
+    class Config:
+        env_file = ".env"  # optional for local dev
 
 
 settings = Settings()
