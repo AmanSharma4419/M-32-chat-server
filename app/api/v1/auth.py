@@ -15,7 +15,7 @@ router = APIRouter()
 # Environment variables
 SECRET_KEY = os.getenv("JWT_SECRET_KEY", "secret_key_for_dev")
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24  # 24 hours
+ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24
 
 GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
 GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
@@ -219,8 +219,11 @@ async def get_current_user(token: str = Depends(oauth2_scheme)) -> UserDB:
             )
 
         return UserDB(
-            id=str(user["_id"]), email=user["email"],
-            full_name=user.get("username")
+            id=str(user.get("_id")),
+            username=user.get("username") or user.get(
+                "email") or user.get("full_name"),
+            full_name=user.get("full_name"),
+            email=user.get("email"),
         )
 
     except jwt.ExpiredSignatureError:
