@@ -4,8 +4,9 @@ import uuid
 
 
 class UserCreate(BaseModel):
-    username: str
+    email: str
     password: str
+    full_name: Optional[str] = None
 
 
 class UserDB(BaseModel):
