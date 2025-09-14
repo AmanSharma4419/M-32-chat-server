@@ -32,7 +32,7 @@ htmlcov/
 .tox/
 
 # Virtual environment
-venv/
+.venv/
 env/
 .env/
 

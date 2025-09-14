@@ -10,7 +10,8 @@ class UserCreate(BaseModel):
 
 class UserDB(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    username: str
+    full_name: str | None = None
+    username: str | None = None
 
 
 class Token(BaseModel):

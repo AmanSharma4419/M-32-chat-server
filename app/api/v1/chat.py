@@ -22,6 +22,7 @@ async def send_message(chat_request: ChatRequest,
             session_id=session_id,
             user_input=chat_request.user_input
         )
+        print(bot_reply, "jj")
 
         return ChatResponse(
             session_id=session_id,
